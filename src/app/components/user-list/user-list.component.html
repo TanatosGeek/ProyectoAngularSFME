@@ -1,0 +1,65 @@
+<div class="container">
+  <mat-card class="user-card">
+    <!-- Encabezado del Card -->
+    <mat-toolbar color="primary">
+      <span class="toolbar-title">Lista de Usuarios</span>
+    </mat-toolbar>
+
+    <br>
+
+    <!-- Input para el filtro -->
+    <div class="filter-container">
+      <mat-form-field appearance="outline" class="filter-field">
+        <mat-label>Filtro</mat-label>
+        <input matInput (input)="applyFilter($event)" placeholder="Buscar Usuarios" />
+      </mat-form-field>
+    </div>
+
+    <!-- Tabla de Usuarios -->
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 user-table">
+      <!-- Columna de ID -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+        <td mat-cell *matCellDef="let user">{{ user.id }}</td>
+      </ng-container>
+
+      <!-- Columna de Nombre -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+        <td mat-cell *matCellDef="let user">{{ user.name }}</td>
+      </ng-container>
+
+      <!-- Columna de Email -->
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+        <td mat-cell *matCellDef="let user">{{ user.email }}</td>
+      </ng-container>
+
+      <!-- Columna de Contraseña -->
+      <ng-container matColumnDef="password">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Password</th>
+        <td mat-cell *matCellDef="let user"> {{ user.password }} </td>
+      </ng-container>
+
+      <!-- Columna de Rol -->
+      <ng-container matColumnDef="role">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Role</th>
+        <td mat-cell *matCellDef="let user">{{ user.role }}</td>
+      </ng-container>
+
+      <!-- Columna de Avatar -->
+      <ng-container matColumnDef="avatar">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Avatar</th>
+        <td mat-cell *matCellDef="let user">{{ user.avatar }}</td>
+      </ng-container>
+
+      <!-- Filas y Encabezados -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <!-- Paginador -->
+    <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 25]" aria-label="Select page"
+      showFirstLastButtons></mat-paginator>
+  </mat-card>
+</div>
