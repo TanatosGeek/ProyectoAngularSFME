@@ -191,10 +191,14 @@ Ingresaremos al archivo src/app/components/user-list/user-list.component.html y 
         <td mat-cell *matCellDef="let user">{{ user.role }}</td>
       </ng-container>
 
-      <!-- Columna de Avatar -->
+<!-- Columna de Avatar -->
       <ng-container matColumnDef="avatar">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Avatar</th>
-        <td mat-cell *matCellDef="let user">{{ user.avatar }}</td>
+        <td mat-cell *matCellDef="let user">
+          <a [href]="user.avatar" target="_blank">
+            <img [src]="user.avatar" alt="Avatar" />
+          </a>
+        </td>
       </ng-container>
 
       <!-- Filas y Encabezados -->
